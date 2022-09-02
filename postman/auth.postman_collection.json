@@ -1,0 +1,92 @@
+{
+	"info": {
+		"_postman_id": "5ea84c7c-b52a-40ec-9507-4579667cca05",
+		"name": "auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15839998"
+	},
+	"item": [
+		{
+			"name": "api/v1/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "admin@admin.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/v1/register",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMDIwYzQzZGVlYThjZDk3MzNlMzFkMTJiYjYyMWEwNmFmNjI1NDk5MGE0NzQ0NTRiOGQxNzZhZTFmZDA2MmRiNGQzMWJlMGRjYzU2MzUxNzUiLCJpYXQiOjE2NjIxMDIwNjAuMjM2NjYyLCJuYmYiOjE2NjIxMDIwNjAuMjM2NjY2LCJleHAiOjE2OTM2MzgwNjAuMjI5MTUyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.apWEeR3HgEQg8zGJqKPSKTKWArwk2n-GzkQbKVX_z79JWnWYHwt_lmv_GdSqLqdliq9SIurJm8MgIqU5z3lcxvg7oO91ji8nE-_ODrX6Tkwg_qr3RXF35yU8G1LznnD8T9rtVmalS6SxtPGMzYCGB4vcUIRQupOf4YrUuYQ1k2arLiLh6cXwuN6D-6jj1I1trzYYGUeayhjgxxDHSQlD9pCphpFPFBdhYICln-abgFzzDg3AYdEW7ekf71i_cNS-eRc0CPhFvPa7EcefIXz8biyZ1VPCW781zu8D3PGWhchZ5KelDD-gJ9btcbUTj2HxFJNbt5ogjphgOkowMYSW_710lJ6FveuK-tF0ZOHb6WOIFZ8Z9myGZi6rDEG8uz9kvyC809fUgoja_F22kJ0E-jb5obQNRZkFfkGWCxEi3utv6l4IHY380LPrX5k08THox7CSJYfUa0_EWWGZJ_Fns1ovpLOtQf2MprcTV-s2-3W7PfX4sWyUwjHoC5DkeFJGkFXWtdP3KS5dF2sDfMBXRXSP3DUZZpo4-q9p-O2vbNPQ4LuSWeVM4No1g3Yd0tw8NQvKHK2knBh6k2pgXkaSyLo7yOpTADy7iNlSwqPx3cOvkmI_RpFlLtNoNmzCxKKC0x6aD0Ukbte54RJtQFxkSCUj16iYb-Qc23GtMJLp764",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "test2@admin.com",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
