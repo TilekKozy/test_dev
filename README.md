@@ -95,37 +95,31 @@ git clone git@github.com:TilekKozy/docker-lamp.git
 docker run --rm -v $(pwd):/app composer install
 ```
 
-#### 7. Установите в каталоге проекта такой уровень разрешений, чтобы ее владельцем был пользователь без привилегий root
-
-```code
-sudo chown -R $USER:$USER .
-```
-
-#### 8. Запускаем одну команду для запуска всех контейнеров
+#### 7. Запускаем одну команду для запуска всех контейнеров
 
 ```code
 docker-compose up -d
 ```
-#### 9. Запускаем терминал Bash внутри контейнера app
+#### 8. Запускаем терминал Bash внутри контейнера app
 
 ```code
 docker exec -it app bash
 ```
 
-#### 10. Генерируем ключ и запускаем миграции
+#### 9. Генерируем ключ и запускаем миграции
 
 ```code
 php artisan key:generate
 php artisan migrate
 ```
 
-#### 11. Запускаем сиды
+#### 10. Запускаем сиды
 
 ```code
 php artisan db:seed
 ```
 
-#### 12. Устанавливаем passport
+#### 11. Устанавливаем passport
 
 ```code
 php artisan passport:install
