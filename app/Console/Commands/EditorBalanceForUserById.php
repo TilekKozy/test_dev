@@ -28,25 +28,30 @@ class EditorBalanceForUserById extends Command
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return bool
      */
-    public function handle()
+    public function handle(): bool
     {
         $operator = $this->argument('operator');
         if ($operator == 'add') {
             try {
                 (new BalanceService())->income($this->argument('id'), $this->argument('amount'));
                 $this->info("success");
+                return true;
             } catch (\Exception $e) {
                 $this->info("error");
+                return false;
             }
         } elseif ($operator == 'rm') {
             try {
                 (new BalanceService())->outcome($this->argument('id'), $this->argument('amount'));
                 $this->info("success");
+                return true;
             } catch (\Exception $e) {
                 $this->info("error");
+                return false;
             }
         }
+        return false;
     }
 }

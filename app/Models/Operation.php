@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @method  filter(\App\Http\Filters\ProductFilter $filter)
  * @property integer $id
  * @property float $price
  * @property boolean $status
+ * @method filter(\App\Http\Filters\OperationFilter $filter)
  */
 class Operation extends Model
 {

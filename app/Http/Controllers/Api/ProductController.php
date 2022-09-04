@@ -25,7 +25,7 @@ class ProductController extends Controller
      * @param ProductFilter $filter
      * @return JsonResponse
      */
-    public function index(ProductFilter $filter)
+    public function index(ProductFilter $filter) : JsonResponse
     {
         return response()->json(
             $this->repository->getWithFilterAndPaginate($filter , 10)
@@ -36,7 +36,7 @@ class ProductController extends Controller
      * @param ProductStoreRequest $request
      * @return JsonResponse
      */
-    public function store(ProductStoreRequest $request)
+    public function store(ProductStoreRequest $request) : JsonResponse
     {
         return response()->json(
             $this->repository->create($request->all())
@@ -47,7 +47,7 @@ class ProductController extends Controller
      * @param Product $product
      * @return JsonResponse
      */
-    public function show(Product $product)
+    public function show(Product $product) : JsonResponse
     {
 
         return response()->json(
@@ -60,7 +60,7 @@ class ProductController extends Controller
      * @param int $product
      * @return JsonResponse
      */
-    public function update(ProductUpdateRequest $request, int $product)
+    public function update(ProductUpdateRequest $request, int $product) : JsonResponse
     {
         return response()->json([
             'status'=> $this->repository->update($product , $request->all())
@@ -72,7 +72,7 @@ class ProductController extends Controller
      * @param Product $product
      * @return JsonResponse
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product) : JsonResponse
     {
         return response()->json([
                 'status'=> $this->repository->deleteById($product->id)

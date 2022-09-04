@@ -15,9 +15,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
-    use HasFactory,Filterable;
+    use HasFactory, Filterable;
 
-    protected $fillable=[
+    protected $fillable = [
         'name',
         'price'
     ];

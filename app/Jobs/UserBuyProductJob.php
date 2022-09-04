@@ -18,16 +18,17 @@ class UserBuyProductJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $data ;
-    protected Product $product ;
+    protected $data;
+    protected Product $product;
     protected OperationRepository $repository;
     protected ProductRepository $productRepository;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(array $data, Product $product ,)
+    public function __construct(array $data, Product $product)
     {
         $this->data = $data;
         $this->product = $product;
@@ -40,16 +41,16 @@ class UserBuyProductJob implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $this->repository->create([
             'user_id' => $this->data['user_id'],
             'product_id' => $this->data['product_id'],
             'price' => $this->product->price,
-            'status'=>$this->data['status']
+            'status' => $this->data['status']
         ]);
 
-        if($this->data['status']){
+        if ($this->data['status']) {
             (new BalanceService())->outcome($this->data['user_id'], $this->product->price);
         }
     }

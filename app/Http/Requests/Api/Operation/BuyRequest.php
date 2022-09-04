@@ -11,11 +11,11 @@ class BuyRequest extends BaseRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'user_id'=>'required|integer',
-            'product_id'=>'required|integer',
+            'user_id' => 'required|integer',
+            'product_id' => 'required|integer',
         ];
     }
 }

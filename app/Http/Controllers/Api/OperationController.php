@@ -7,6 +7,7 @@ use App\Http\Filters\OperationFilter;
 use App\Http\Requests\Api\Operation\BuyRequest;
 use App\Repositories\OperationRepository;
 use App\Services\BalanceService;
+use Illuminate\Http\JsonResponse;
 
 class OperationController extends Controller
 {
@@ -21,14 +22,23 @@ class OperationController extends Controller
     }
 
 
-    public function index(OperationFilter $filter)
+    /**
+     * @param OperationFilter $filter
+     * @return JsonResponse
+     */
+    public function index(OperationFilter $filter) : JsonResponse
     {
         return response()->json(
             $this->repository->getWithFilterAndPaginate($filter , 10)
         );
     }
 
-    public function buy(BuyRequest $request){
+    /**
+     * @param BuyRequest $request
+     * @return JsonResponse
+     */
+    public function buy(BuyRequest $request) : JsonResponse
+    {
         $status = $this->userBalanceService->buyProduct($request->all());
         if($status){
             return response()->json(['status'=>'success']);

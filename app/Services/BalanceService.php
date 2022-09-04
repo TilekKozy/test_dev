@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Jobs\UserBuyProductJob;
-use App\Models\User;
 use App\Repositories\ProductRepository;
 use App\Repositories\UserRepository;
 
@@ -44,12 +43,12 @@ class BalanceService
      * @param array $data
      * @return bool
      */
-    public function buyProduct(array $data)
+    public function buyProduct(array $data): bool
     {
         $user = $this->repository->getById($data['user_id']);
         $product = $this->productRepository->getById($data['product_id']);
         $data['status'] = ($user->balance >= $product->price);
-        UserBuyProductJob::dispatch($data , $product);
+        UserBuyProductJob::dispatch($data, $product);
 
         return $data['status'];
     }

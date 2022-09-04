@@ -4,11 +4,12 @@ namespace App\Repositories;
 
 use App\Http\Filters\OperationFilter;
 use App\Models\Operation;
+use App\Repositories\Interfaces\OperationInterface;
 use App\Repositories\Interfaces\ProductInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 
-final class OperationRepository extends BaseRepository implements ProductInterface
+final class OperationRepository extends BaseRepository implements OperationInterface
 {
     public function __construct()
     {
@@ -20,7 +21,7 @@ final class OperationRepository extends BaseRepository implements ProductInterfa
      * @param int $perPage
      * @return LengthAwarePaginator
      */
-    public function getWithFilterAndPaginate(OperationFilter|\App\Http\Filters\ProductFilter $filter , int $perPage): LengthAwarePaginator
+    public function getWithFilterAndPaginate(OperationFilter $filter , int $perPage): LengthAwarePaginator
     {
         return $this->model->filter($filter)->paginate($perPage);
     }

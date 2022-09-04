@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\User\UserLoginRequest;
 use App\Http\Requests\Api\User\UserRegisterRequest;
 use App\Repositories\UserRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -17,7 +18,11 @@ class UserController extends Controller
         $this->repository = $repository;
     }
 
-    public function login(UserLoginRequest $request)
+    /**
+     * @param UserLoginRequest $request
+     * @return JsonResponse
+     */
+    public function login(UserLoginRequest $request) : JsonResponse
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
             $user = Auth::user();
@@ -32,7 +37,11 @@ class UserController extends Controller
         }
     }
 
-    public function register(UserRegisterRequest $request)
+    /**
+     * @param UserRegisterRequest $request
+     * @return JsonResponse
+     */
+    public function register(UserRegisterRequest $request) : JsonResponse
     {
         $user = $this->repository->create($request->all());
         $token = $user->createToken('api');
