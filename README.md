@@ -1,64 +1,133 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+### Application
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Backend
 
-## About Laravel
+|  Т            |    В       |
+| ---------     | -----:     |
+| Laravel       |   9.19 |
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Серверное ПО
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+|  Т            |    В       |
+| ---------     | -----:     |
+| PHP           |   8.0   |
+| MySQL         |   8.0   |
+| Nginx         |   1.23.1   |
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# POSTMAN 
+  Postman коллекции доступны по директории [postman](postman)
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# УСТАНОВКА
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### 1. Клонируем проект
 
-## Laravel Sponsors
+```code
+git clone git@github.com:TilekKozy/test_dev.git
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### 2. Копируем env.example и создаем .env
 
-### Premium Partners
+```code
+cp .env.example .env
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+#### 3. Заходим в проект и устанавливаем зависимости
 
-## Contributing
+```code
+composer install && php artisan key:generate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### 4. Запускаем миграции
 
-## Code of Conduct
+```code
+php artisan migrate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### 5. Запускаем сиды
 
-## Security Vulnerabilities
+```code
+php artisan db:seed
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### 6. Устанавливаем passport
 
-## License
+```code
+php artisan passport:install
+php artisan passport:keys
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# УСТАНОВКА С ПОМОЩЬЮ DOCKER
+
+#### 1. Клонируем проект
+
+```code
+git clone git@github.com:TilekKozy/test_dev.git
+```
+
+#### 2. Установите в каталоге проекта такой уровень разрешений, чтобы ее владельцем был пользователь без привилегий root
+
+```code
+sudo chown -R $USER:$USER test_dev
+```
+
+#### 3. Перейдите в каталог test_dev
+
+```code
+cd test_dev
+```
+
+#### 4. Копируем env.example и создаем .env
+
+```code
+cp .env.example .env
+```
+
+#### 5. Копируем docker-lamp в директорию проекта
+
+```code
+git clone git@github.com:TilekKozy/docker-lamp.git
+```
+
+#### 6. Заходим в проект и устанавливаем зависимости
+
+```code
+docker run --rm -v $(pwd):/app composer install
+```
+
+#### 7. Установите в каталоге проекта такой уровень разрешений, чтобы ее владельцем был пользователь без привилегий root
+
+```code
+sudo chown -R $USER:$USER .
+```
+
+#### 8. Запускаем одну команду для запуска всех контейнеров
+
+```code
+docker-compose up -d
+```
+#### 9. Запускаем терминал Bash внутри контейнера app
+
+```code
+docker exec -it app bash
+```
+
+#### 10. Генерируем ключ и запускаем миграции
+
+```code
+php artisan key:generate
+php artisan migrate
+```
+
+#### 11. Запускаем сиды
+
+```code
+php artisan db:seed
+```
+
+#### 12. Устанавливаем passport
+
+```code
+php artisan passport:install
+php artisan passport:keys
+```
