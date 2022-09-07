@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Http\Filters\ProductFilter;
 use App\Http\Requests\Api\Product\ProductStoreRequest;
 use App\Http\Requests\Api\Product\ProductUpdateRequest;
@@ -10,7 +9,7 @@ use App\Models\Product;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\JsonResponse;
 
-class ProductController extends Controller
+class ProductController extends BaseController
 {
 
     private ProductRepository $repository;
@@ -27,7 +26,7 @@ class ProductController extends Controller
      */
     public function index(ProductFilter $filter) : JsonResponse
     {
-        return response()->json(
+        return $this->jsonResponse(
             $this->repository->getWithFilterAndPaginate($filter , 10)
         );
     }
@@ -38,7 +37,7 @@ class ProductController extends Controller
      */
     public function store(ProductStoreRequest $request) : JsonResponse
     {
-        return response()->json(
+        return $this->jsonResponse(
             $this->repository->create($request->all())
         );
     }
@@ -50,7 +49,7 @@ class ProductController extends Controller
     public function show(Product $product) : JsonResponse
     {
 
-        return response()->json(
+        return $this->jsonResponse(
             $this->repository->getById($product->id)
         );
     }
@@ -62,7 +61,7 @@ class ProductController extends Controller
      */
     public function update(ProductUpdateRequest $request, int $product) : JsonResponse
     {
-        return response()->json([
+        return $this->jsonResponse([
             'status'=> $this->repository->update($product , $request->all())
             ]
         );
@@ -74,10 +73,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product) : JsonResponse
     {
-        return response()->json([
+        return $this->jsonResponse([
                 'status'=> $this->repository->deleteById($product->id)
-            ]
-        );
+            ]);
     }
 
 

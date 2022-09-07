@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Http\Filters\OperationFilter;
 use App\Http\Requests\Api\Operation\BuyRequest;
 use App\Repositories\OperationRepository;
 use App\Services\BalanceService;
 use Illuminate\Http\JsonResponse;
 
-class OperationController extends Controller
+class OperationController extends BaseController
 {
 
     private OperationRepository $repository;
@@ -28,7 +27,7 @@ class OperationController extends Controller
      */
     public function index(OperationFilter $filter) : JsonResponse
     {
-        return response()->json(
+        return $this->jsonResponse(
             $this->repository->getWithFilterAndPaginate($filter , 10)
         );
     }
@@ -41,10 +40,10 @@ class OperationController extends Controller
     {
         $status = $this->userBalanceService->buyProduct($request->all());
         if($status){
-            return response()->json(['status'=>'success']);
+            return $this->jsonResponse(['status'=>'success']);
         }else{
 //            или можно написать что недостаточно баланса
-            return response()->json(['status'=>'error']);
+            return $this->jsonResponse(['status'=>'error']);
         }
 
     }

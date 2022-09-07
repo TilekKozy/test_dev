@@ -7,6 +7,17 @@ use Illuminate\Http\JsonResponse;
 
 class BaseController extends Controller
 {
-    protected JsonResponse $jsonResponse;
+
+    /**
+     * @param mixed $data
+     * @param int $status
+     * @param array $headers
+     * @param int $options
+     * @return JsonResponse
+     */
+    public function jsonResponse(mixed $data = [], int $status = 200, array $headers = [], int $options = 0): JsonResponse
+    {
+        return response()->json($data,$status,$headers,$options);
+    }
 
 }
